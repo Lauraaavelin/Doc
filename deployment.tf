@@ -88,8 +88,8 @@ resource "aws_instance" "monitoring" {
               pip3 install --upgrade pip --break-system-packages
               pip3 install -r requirements.txt --break-system-packages
 
-              python3 manage.py makemigrations
-              python3 manage.py migrate
+              python3 manage.py makemigrations || true
+              python3 manage.py migrate || true
               EOT
 
   tags = merge(local.common_tags, {
