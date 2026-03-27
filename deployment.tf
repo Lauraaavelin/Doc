@@ -143,8 +143,8 @@ resource "aws_instance" "monitoring" {
   user_data = <<-EOT
               #!/bin/bash
 
-              sudo export DATABASE_HOST=${aws_instance.database.private_ip}
-              echo "DATABASE_HOST=${aws_instance.database.private_ip}" | sudo tee -a /etc/environment
+              sudo export DATABASE_HOST=172.31.24.42
+              echo "DATABASE_HOST=172.31.24.42" | sudo tee -a /etc/environment
 
               sudo apt-get update -y
               sudo apt-get install -y python3-pip git build-essential libpq-dev python3-dev
@@ -171,8 +171,6 @@ resource "aws_instance" "monitoring" {
     Role = "monitoring-app"
   })
 
-  depends_on = [aws_instance.database]
+  depends_on = 172.31.24.42
 }
-
-
 
